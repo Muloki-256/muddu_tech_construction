@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects | Muddu Tech Construction</title>
+    <meta name="description" content="Explore Muddu Tech Construction's portfolio of completed projects including residential, commercial, industrial and infrastructure developments across Uganda.">
+    <meta name="keywords" content="construction projects, Uganda construction, completed projects, residential buildings, commercial construction">
+    <meta name="author" content="Muddu Tech Construction">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Our Projects | Muddu Tech Construction">
+    <meta property="og:description" content="Explore our portfolio of completed construction projects across Uganda.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #f97316;
+            --primary-dark: #ea580c;
+            --primary-light: #fdba74;
+            --secondary-color: #1e293b;
+            --accent-color: #f59e0b;
+            --light-color: #f8fafc;
+            --dark-color: #0f172a;
+            --text-color: #334155;
+            --text-light: #64748b;
+            --white: #fff;
+            --black: #000;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            --dark-gradient: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 3.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .underline {
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
+            margin: 0 auto 20px;
+            border-radius: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 15px rgba(30, 41, 59, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: #0f172a;
+            box-shadow: 0 8px 20px rgba(30, 41, 59, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            margin-right: 15px;
+            transition: var(--transition);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin-left: 40px;
+        }
+
+        .navbar ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+
+        .navbar ul li a:hover:after,
+        .navbar ul li a.active:after {
+            width: 100%;
+        }
+
+        .navbar ul li a:hover,
+        .navbar ul li a.active {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Page Header */
+        .page-header {
+            height: 60vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.85)), url('https://images.unsplash.com/photo-1503387769-00ec6eccf1e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 120px;
+            position: relative;
+        }
+
+        .page-header-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .page-header-content p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--light-color);
+            padding: 20px 0;
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-color);
+        }
+
+        .breadcrumb span {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Projects Section */
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            padding: 12px 28px;
+            background-color: var(--light-color);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .project-image {
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 6px 15px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .project-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            color: var(--primary-dark);
+            gap: 10px;
+        }
+
+        /* Project Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+            padding: 50px 0;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: auto;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 12px;
+            overflow: hidden;
+            animation: zoom 0.6s;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+
+        .modal-header {
+            position: relative;
+        }
+
+        .modal-image {
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--white);
+            font-size: 30px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .close:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .modal-category {
+            display: inline-block;
+            padding: 6px 15px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .modal-body h2 {
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .modal-body p {
+            color: var(--text-color);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+            padding: 30px;
+            background-color: var(--light-color);
+            border-radius: 12px;
+        }
+
+        .detail-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .detail-item p {
+            color: var(--text-color);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 100px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .footer-col p {
+            margin-bottom: 25px;
+            color: #cbd5e0;
+            line-height: 1.8;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            font-family: inherit;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+
+        .newsletter-form input::placeholder {
+            color: #cbd5e0;
+        }
+
+        .newsletter-form button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .footer-bottom {
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                transition: var(--transition);
+                z-index: 999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        
+            .navbar.active {
+                left: 0;
+            }
+        
+            .navbar ul {
+                flex-direction: column;
+                padding: 30px;
+                text-align: center;
+            }
+        
+            .navbar ul li {
+                margin: 20px 0;
+            }
+        
+            .mobile-menu {
+                display: block;
+            }
+        
+            .page-header-content h1 {
+                font-size: 3rem;
+            }
+        
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+            
+            .page-header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .page-header-content p {
+                font-size: 1.1rem;
+            }
+            
+            .modal-body {
+                padding: 25px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Muddu Tech Construction Logo">
+                    <h1>Muddu Tech Construction</h1>
+                </div>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="projects.html" class="active">Projects</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Our Projects</h1>
+                <p>Explore our portfolio of completed construction projects showcasing our commitment to excellence and innovation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Projects</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Project Portfolio</h2>
+                <div class="underline"></div>
+                <p>Browse through our diverse range of completed projects across Uganda</p>
+            </div>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="residential">Residential</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="industrial">Industrial</button>
+                <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card residential">
+                    <div class="project-image">
+                        <img src="images/muddu2.jpg" alt="Kampala Luxury Apartments">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Residential</span>
+                        <h3>Kampala Luxury Apartments</h3>
+                        <p>Modern luxury apartments featuring contemporary design, premium finishes, and sustainable building practices in the heart of Kampala.</p>
+                        <div class="project-meta">
+                            <span class="project-date">Completed: 2024</span>
+                            <a href="#" class="project-link view-project-btn" data-project="luxury-apartments">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card commercial">
+                    <div class="project-image">
+                        <img src="images/muddu0.jpg" alt="Nakasero Office Complex">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Commercial</span>
+                        <h3>Nakasero Office Complex</h3>
+                        <p>State-of-the-art commercial office space with modern amenities, energy-efficient design, and flexible workspace solutions.</p>
+                        <div class="project-meta">
+                            <span class="project-date">Completed: 2023</span>
+                            <a href="#" class="project-link view-project-btn" data-project="office-complex">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card infrastructure">
+                    <div class="project-image">
+                        <img src="images/muddu6.jpg" alt="Entebbe Expressway">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Infrastructure</span>
+                        <h3>Entebbe Expressway</h3>
+                        <p>Major infrastructure project improving connectivity between Kampala and Entebbe with modern road construction techniques.</p>
+                        <div class="project-meta">
+                            <span class="project-date">Completed: 2022</span>
+                            <a href="#" class="project-link view-project-btn" data-project="expressway">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card industrial">
+                    <div class="project-image">
+                        <img src="images/muddu6.jpg" alt="Industrial Warehouse Complex">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Industrial</span>
+                        <h3>Industrial Warehouse Complex</h3>
+                        <p>Large-scale industrial warehouse facility with advanced logistics systems and sustainable operational practices.</p>
+                        <div class="project-meta">
+                            <span class="project-date">Completed: 2022</span>
+                            <a href="#" class="project-link view-project-btn" data-project="warehouse">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card residential">
+                    <div class="project-image">
+                        <img src="images/muddu2.jpg" alt="Buziga Residential Estate">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Residential</span>
+                        <h3>Buziga Residential Estate</h3>
+                        <p>Luxury residential estate with custom homes, community amenities, and beautiful landscaping in Buziga.</p>
+                        <div class="project-meta">
+                            <span class="project-date">Completed: 2021</span>
+                            <a href="#" class="project-link view-project-btn" data-project="residential-estate">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card commercial">
+                    <div class="project-image">
+                        <img src="images/muddu0.jpg" alt="Acacia Shopping Mall">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Commercial</span>
+                        <h3>Acacia Shopping Mall</h3>
+                        <p>Modern shopping mall with retail spaces, food court, entertainment facilities, and ample parking.</p>
+                        <div class="project-meta">
+                            <span class="project-date">Completed: 2020</span>
+                            <a href="#" class="project-link view-project-btn" data-project="shopping-mall">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="Muddu Tech Construction Logo">
+                        <h3>Muddu Tech Construction</h3>
+                    </div>
+                    <p>Uganda's premier construction company delivering world-class residential, commercial, and infrastructure projects with excellence and innovation since 2008.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Residential Construction</a></li>
+                        <li><a href="#">Commercial Construction</a></li>
+                        <li><a href="#">Industrial Construction</a></li>
+                        <li><a href="#">Infrastructure Development</a></li>
+                        <li><a href="#">Renovation & Remodeling</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates on our latest projects and construction insights.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Muddu Tech Construction. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-image">
+                    <img id="modalImg" src="" alt="">
+                </div>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <span class="modal-category" id="modalCategory">Residential</span>
+                <h2 id="modalTitle">Project Title</h2>
+                <p id="modalDescription">Project description will appear here.</p>
+                
+                <div class="project-details">
+                    <div class="detail-item">
+                        <h4>Project Type</h4>
+                        <p id="modalType">Residential</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Location</h4>
+                        <p id="modalLocation">Kampala, Uganda</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Completion Date</h4>
+                        <p id="modalDate">2024</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Client</h4>
+                        <p id="modalClient">Private Developer</p>
+                    </div>
+                </div>
+                
+                <h3>Project Highlights</h3>
+                <p id="modalHighlights">Project highlights will appear here.</p>
+                
+                <h3>Scope of Work</h3>
+                <p id="modalScope">Scope of work details will appear here.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Projects Page
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const navbar = document.querySelector('.navbar');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-times');
+            icon.classList.toggle('fa-bars');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.navbar ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Filter projects
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.classList.contains(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Project modal functionality - FIXED VERSION
+        const modal = document.getElementById('projectModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalType = document.getElementById('modalType');
+        const modalLocation = document.getElementById('modalLocation');
+        const modalDate = document.getElementById('modalDate');
+        const modalClient = document.getElementById('modalClient');
+        const modalHighlights = document.getElementById('modalHighlights');
+        const modalScope = document.getElementById('modalScope');
+        const closeBtn = document.querySelector('.close');
+        const viewProjectBtns = document.querySelectorAll('.view-project-btn');
+
+        // Project data - COMPLETE with all 6 projects
+        const projectDetails = {
+            'luxury-apartments': {
+                image: 'images/muddu2.jpg',
+                title: 'Kampala Luxury Apartments',
+                description: 'Modern luxury apartments featuring contemporary design, premium finishes, and sustainable building practices in the heart of Kampala.',
+                category: 'Residential',
+                type: 'Residential Apartments',
+                location: 'Kampala Central, Uganda',
+                date: '2024',
+                client: 'Prime Properties Ltd',
+                highlights: 'This project features 24 luxury units with state-of-the-art amenities including a swimming pool, fitness center, and 24/7 security. The building incorporates sustainable design principles with energy-efficient systems and water conservation measures.',
+                scope: 'Complete design and construction of a 12-story residential building including structural works, MEP installations, interior finishing, and landscaping.'
+            },
+            'office-complex': {
+                image: 'images/muddu0.jpg',
+                title: 'Nakasero Office Complex',
+                description: 'State-of-the-art commercial office space with modern amenities, energy-efficient design, and flexible workspace solutions.',
+                category: 'Commercial',
+                type: 'Office Building',
+                location: 'Nakasero, Kampala',
+                date: '2023',
+                client: 'Corporate Holdings Uganda',
+                highlights: 'The Nakasero Office Complex features 8 floors of premium office space with panoramic city views. The building includes a conference center, rooftop terrace, and underground parking. It achieved a 4-star Green Building Council rating for its sustainable features.',
+                scope: 'Design and construction of commercial office complex including structural works, facade installation, interior fit-out, and all MEP systems.'
+            },
+            'expressway': {
+                image: 'images/muddu6.jpg',
+                title: 'Entebbe Expressway',
+                description: 'Major infrastructure project improving connectivity between Kampala and Entebbe with modern road construction techniques.',
+                category: 'Infrastructure',
+                type: 'Road Construction',
+                location: 'Kampala to Entebbe',
+                date: '2022',
+                client: 'Uganda National Roads Authority',
+                highlights: 'The Entebbe Expressway is a 51km dual carriageway that has significantly reduced travel time between Kampala and Entebbe International Airport. The project included the construction of 4 major interchanges and 12 bridges.',
+                scope: 'Earthworks, pavement construction, bridge construction, drainage systems, road markings, and installation of traffic management systems.'
+            },
+            'warehouse': {
+                image: 'images/muddu6.jpg',
+                title: 'Industrial Warehouse Complex',
+                description: 'Large-scale industrial warehouse facility with advanced logistics systems and sustainable operational practices.',
+                category: 'Industrial',
+                type: 'Warehouse Facility',
+                location: 'Namanve Industrial Park',
+                date: '2022',
+                client: 'Logistics Solutions Uganda',
+                highlights: 'This 15,000 sqm warehouse complex features state-of-the-art storage systems, climate-controlled areas, and advanced security systems. The facility includes office spaces, loading bays, and custom logistics solutions.',
+                scope: 'Design and construction of industrial warehouse including structural steel works, cladding, floor finishing, MEP installations, and security systems.'
+            },
+            'residential-estate': {
+                image: 'images/muddu2.jpg',
+                title: 'Buziga Residential Estate',
+                description: 'Luxury residential estate with custom homes, community amenities, and beautiful landscaping in Buziga.',
+                category: 'Residential',
+                type: 'Residential Estate',
+                location: 'Buziga, Kampala',
+                date: '2021',
+                client: 'Elite Homes Development',
+                highlights: 'The Buziga Residential Estate features 25 custom-designed homes with premium finishes and modern amenities. The community includes a clubhouse, swimming pool, children\'s play area, and 24/7 security.',
+                scope: 'Site development, construction of 25 residential units, installation of infrastructure (roads, water, electricity), and landscaping of common areas.'
+            },
+            'shopping-mall': {
+                image: 'images/muddu0.jpg',
+                title: 'Acacia Shopping Mall',
+                description: 'Modern shopping mall with retail spaces, food court, entertainment facilities, and ample parking.',
+                category: 'Commercial',
+                type: 'Shopping Mall',
+                location: 'Kira Road, Kampala',
+                date: '2020',
+                client: 'Retail Ventures Uganda',
+                highlights: 'The Acacia Shopping Mall is a 3-level retail center with over 50 stores, a food court with 12 restaurants, a cinema complex, and parking for 500 vehicles. The mall features modern architectural design with natural lighting and energy-efficient systems.',
+                scope: 'Complete design and construction of shopping mall including structural works, facade, interior fit-out, MEP systems, and parking facilities.'
+            }
+        };
+
+        // Add click event to all view project buttons
+        viewProjectBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const projectId = this.getAttribute('data-project');
+                
+                const projectData = projectDetails[projectId];
+                
+                if (projectData) {
+                    // Set modal content
+                    modalImg.src = projectData.image;
+                    modalImg.alt = projectData.title;
+                    modalTitle.textContent = projectData.title;
+                    modalDescription.textContent = projectData.description;
+                    modalCategory.textContent = projectData.category;
+                    modalType.textContent = projectData.type;
+                    modalLocation.textContent = projectData.location;
+                    modalDate.textContent = projectData.date;
+                    modalClient.textContent = projectData.client;
+                    modalHighlights.textContent = projectData.highlights;
+                    modalScope.textContent = projectData.scope;
+                    
+                    // Display modal
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close modal when clicking on X
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Newsletter form submission
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                alert(`Thank you for subscribing with ${email}! You'll receive our newsletter soon.`);
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
