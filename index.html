@@ -863,7 +863,7 @@
             color: var(--primary-color);
         }
 
-        /* Gallery Modal */
+        /* Project Details Modal - ENHANCED */
         .modal {
             display: none;
             position: fixed;
@@ -877,10 +877,13 @@
         }
 
         .modal-content {
-            margin: auto;
+            margin: 50px auto;
             display: block;
-            width: 80%;
-            max-width: 700px;
+            width: 90%;
+            max-width: 900px;
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
             animation: zoom 0.6s;
         }
 
@@ -889,37 +892,88 @@
             to {transform: scale(1)}
         }
 
+        .modal-header {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .modal-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .modal-category {
+            display: inline-block;
+            padding: 6px 15px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .modal-body h2 {
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-body p {
+            color: var(--text-color);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .modal-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+            padding: 30px;
+            background-color: var(--light-color);
+            border-radius: 12px;
+        }
+
+        .detail-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .detail-item p {
+            color: var(--text-color);
+            margin: 0;
+            font-weight: 600;
+        }
+
         .close {
             position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
+            top: 20px;
+            right: 30px;
+            color: var(--white);
             font-size: 40px;
             font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .close:hover {
+            background: rgba(0, 0, 0, 0.8);
         }
 
         /* Responsive Styles */
@@ -930,6 +984,10 @@
             .stats-grid,
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .modal-details {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -996,6 +1054,14 @@
             .stats-grid,
             .footer-content {
                 grid-template-columns: 1fr;
+            }
+            
+            .modal-header {
+                height: 250px;
+            }
+            
+            .modal-body {
+                padding: 25px;
             }
         }
 
@@ -1111,7 +1177,7 @@
         </div>
     </section>
 
-    <!-- Services Section - FIXED -->
+    <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
             <div class="section-title">
@@ -1212,7 +1278,7 @@
         </div>
     </section>
 
-    <!-- Values Section - FIXED -->
+    <!-- Values Section -->
     <section class="values" id="values">
         <div class="container">
             <div class="section-title">
@@ -1429,7 +1495,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Muddu Tech Construction. All Rights Reserved.</p>
+                <p>&copy; 2023 Muddu Tech Construction. All Rights Reserved.</p>
                 <div class="footer-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
@@ -1438,11 +1504,44 @@
         </div>
     </footer>
 
-    <!-- Project Gallery Modal -->
+    <!-- Project Details Modal - ENHANCED -->
     <div id="projectModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modalImg">
-        <div id="caption"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <img id="modalImg" src="" alt="">
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <span class="modal-category" id="modalCategory">Residential</span>
+                <h2 id="modalTitle">Project Title</h2>
+                <p id="modalDescription">Project description will appear here.</p>
+                
+                <div class="modal-details">
+                    <div class="detail-item">
+                        <h4>Location</h4>
+                        <p id="modalLocation">Kampala, Uganda</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Completion Date</h4>
+                        <p id="modalDate">2024</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Client</h4>
+                        <p id="modalClient">Private Developer</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Project Type</h4>
+                        <p id="modalType">Residential</p>
+                    </div>
+                </div>
+                
+                <h3>Project Highlights</h3>
+                <p id="modalHighlights">Project highlights will appear here.</p>
+                
+                <h3>Scope of Work</h3>
+                <p id="modalScope">Scope of work details will appear here.</p>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1533,8 +1632,6 @@
                 const email = document.getElementById('email').value;
                 const message = document.getElementById('message').value;
                 
-                // Here you would typically send the form data to a server
-                // For demonstration, we'll just show an alert
                 alert(`Thank you, ${name}! Your message has been received. We will contact you at ${email} shortly.`);
                 
                 // Reset form
@@ -1585,56 +1682,111 @@
         window.addEventListener('load', animateOnScroll);
         window.addEventListener('scroll', animateOnScroll);
 
-        // Project gallery modal functionality
+        // Project modal functionality - ENHANCED FOR HOMEPAGE
         const modal = document.getElementById('projectModal');
         const modalImg = document.getElementById('modalImg');
-        const captionText = document.getElementById('caption');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalType = document.getElementById('modalType');
+        const modalLocation = document.getElementById('modalLocation');
+        const modalDate = document.getElementById('modalDate');
+        const modalClient = document.getElementById('modalClient');
+        const modalHighlights = document.getElementById('modalHighlights');
+        const modalScope = document.getElementById('modalScope');
         const closeBtn = document.querySelector('.close');
         const viewProjectBtns = document.querySelectorAll('.view-project-btn');
 
+        // Project data for homepage projects
+        const projectDetails = {
+            'luxury-apartments': {
+                image: 'images/muddu2.jpg',
+                title: 'Luxury Apartments In Masanafu',
+                description: 'Modern luxury apartments featuring contemporary design, premium finishes, and sustainable building practices in the heart of Masanafu.',
+                category: 'Residential',
+                type: 'Residential Apartments',
+                location: 'Masanafu, Kampala',
+                date: '2024',
+                client: 'Prime Properties Ltd',
+                highlights: 'This project features 24 luxury units with state-of-the-art amenities including a swimming pool, fitness center, and 24/7 security. The building incorporates sustainable design principles with energy-efficient systems and water conservation measures.',
+                scope: 'Complete design and construction of a 12-story residential building including structural works, MEP installations, interior finishing, and landscaping.'
+            },
+            'school-building': {
+                image: 'images/muddu0.jpg',
+                title: 'School Building In Masanafu',
+                description: 'A state-of-the-art school building designed to provide optimal learning environments with safety and functionality in mind.',
+                category: 'Commercial',
+                type: 'Educational Facility',
+                location: 'Masanafu, Kampala',
+                date: '2024',
+                client: 'Masanafu Education Trust',
+                highlights: 'The school features 30 modern classrooms, science laboratories, a library, administrative offices, and a multipurpose hall. The design prioritizes natural lighting, ventilation, and safety features throughout.',
+                scope: 'Design and construction of educational facility including structural works, MEP installations, interior finishing, and playground development.'
+            },
+            'luxury-house': {
+                image: 'images/muddu6.jpg',
+                title: 'Luxury House in Lunguja',
+                description: 'Custom luxury residence in Lunguja with high-end finishes, spacious layouts, and beautiful landscaping.',
+                category: 'Residential',
+                type: 'Private Residence',
+                location: 'Lunguja, Kampala',
+                date: '2020',
+                client: 'Private Client',
+                highlights: 'This 5-bedroom luxury home features an open-plan living area, gourmet kitchen, home theater, swimming pool, and landscaped gardens. High-end finishes include marble flooring, custom cabinetry, and smart home technology.',
+                scope: 'Complete design and construction of luxury residence including all structural works, interior finishing, MEP installations, and landscape design.'
+            }
+        };
+
+        // Add click event to all view project buttons
         viewProjectBtns.forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                const project = this.getAttribute('data-project');
-                const projectTitle = this.parentElement.querySelector('h3').textContent;
-                const projectImage = this.parentElement.parentElement.querySelector('img').src;
+                const projectId = this.getAttribute('data-project');
                 
-                // In a real implementation, you would fetch project details from a database
-                // For now, we'll use placeholder content
-                const projectDetails = {
-                    'luxury-apartments': {
-                        image: 'images/project1.jpg',
-                        description: 'Modern luxury apartments in Masanafu featuring contemporary design, premium finishes, and sustainable building practices.'
-                    },
-                    'school-building': {
-                        image: 'images/project2.jpg',
-                        description: 'A state-of-the-art school building designed to provide optimal learning environments with safety and functionality in mind.'
-                    },
-                    'luxury-house': {
-                        image: 'images/project3.jpg',
-                        description: 'Custom luxury residence in Lunguja with high-end finishes, spacious layouts, and beautiful landscaping.'
-                    }
-                };
+                const projectData = projectDetails[projectId];
                 
-                const projectData = projectDetails[project] || {
-                    image: 'images/placeholder.jpg',
-                    description: 'Project details coming soon.'
-                };
-                
-                modal.style.display = 'block';
-                modalImg.src = projectData.image;
-                modalImg.alt = projectTitle;
-                captionText.innerHTML = `<h3>${projectTitle}</h3><p>${projectData.description}</p>`;
+                if (projectData) {
+                    // Set modal content
+                    modalImg.src = projectData.image;
+                    modalImg.alt = projectData.title;
+                    modalTitle.textContent = projectData.title;
+                    modalDescription.textContent = projectData.description;
+                    modalCategory.textContent = projectData.category;
+                    modalType.textContent = projectData.type;
+                    modalLocation.textContent = projectData.location;
+                    modalDate.textContent = projectData.date;
+                    modalClient.textContent = projectData.client;
+                    modalHighlights.textContent = projectData.highlights;
+                    modalScope.textContent = projectData.scope;
+                    
+                    // Display modal
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
             });
         });
 
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
+        // Close modal when clicking on X
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        }
 
+        // Close modal when clicking outside
         window.addEventListener('click', function(e) {
             if (e.target === modal) {
                 modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
         });
 
