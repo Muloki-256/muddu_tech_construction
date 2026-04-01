@@ -13,6 +13,9 @@
     <meta property="og:description" content="Uganda's premier construction company delivering world-class projects.">
     <meta property="og:type" content="website">
     
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     
@@ -1814,6 +1817,315 @@
         }
         
         window.addEventListener('scroll', setActiveNavLink);
+    </script>
+
+    <!-- Netlify Identity redirect after login -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", function(user) {
+          if (!user) {
+            window.netlifyIdentity.on("login", function() {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+
+    <!-- CMS Content Loader -->
+    <script>
+      // Simple frontmatter parser for markdown files
+      function parseFrontmatter(text) {
+        const match = text.match(/^---\n([\s\S]*?)\n---/);
+        if (!match) return {};
+        const data = {};
+        let currentKey = null;
+        let indent = 0;
+        let parentKey = null;
+        const lines = match[1].split('\n');
+        for (const line of lines) {
+          // Detect nested object lines (indented with spaces)
+          const nestedMatch = line.match(/^  (\w[\w_]*)\s*:\s*"?(.*?)"?\s*$/);
+          const topMatch = line.match(/^(\w[\w_]*)\s*:\s*(.*)$/);
+
+          if (nestedMatch && parentKey) {
+            if (!data[parentKey] || typeof data[parentKey] !== 'object') {
+              data[parentKey] = {};
+            }
+            data[parentKey][nestedMatch[1]] = nestedMatch[2].replace(/^["']|["']$/g, '');
+          } else if (topMatch) {
+            const key = topMatch[1];
+            let val = topMatch[2].trim();
+            if (val === '' || val === '|') {
+              // Could be a nested object or multiline - mark as parent
+              parentKey = key;
+              data[key] = {};
+            } else {
+              parentKey = null;
+              val = val.replace(/^["']|["']$/g, '');
+              data[key] = val;
+            }
+          }
+        }
+        return data;
+      }
+
+      // Load and render CMS content
+      async function loadCMSContent() {
+        try {
+          // Load projects
+          await loadProjects();
+          // Load testimonials
+          await loadTestimonials();
+          // Load company info
+          await loadCompanyInfo();
+        } catch (e) {
+          // Silently fail - static content remains as fallback
+          console.log('CMS content loading skipped, using static content');
+        }
+      }
+
+      async function loadProjects() {
+        try {
+          // Fetch the list of project files from the GitHub API
+          const projectFiles = [
+            'content/projects/luxury-apartments-masanafu.md',
+            'content/projects/school-building-masanafu.md',
+            'content/projects/luxury-house-lunguja.md'
+          ];
+
+          const projects = [];
+          for (const file of projectFiles) {
+            try {
+              const resp = await fetch('/' + file);
+              if (resp.ok) {
+                const text = await resp.text();
+                const data = parseFrontmatter(text);
+                if (data.title) projects.push(data);
+              }
+            } catch (e) { /* skip */ }
+          }
+
+          if (projects.length === 0) return;
+
+          const grid = document.querySelector('.projects-grid');
+          if (!grid) return;
+
+          grid.innerHTML = '';
+
+          // Also rebuild the projectDetails object for modals
+          const newProjectDetails = {};
+
+          projects.forEach(function(p) {
+            const slug = p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
+            const category = p.category || 'residential';
+
+            newProjectDetails[slug] = {
+              image: p.image,
+              title: p.title,
+              description: p.description || '',
+              category: category.charAt(0).toUpperCase() + category.slice(1),
+              type: p.type || category,
+              location: p.location || 'Kampala, Uganda',
+              date: p.year || '',
+              client: p.client || '',
+              highlights: p.highlights || '',
+              scope: p.scope || ''
+            };
+
+            const div = document.createElement('div');
+            div.className = 'project-item ' + category;
+            div.innerHTML =
+              '<img src="' + (p.image || '') + '" alt="' + (p.title || '') + '">' +
+              '<div class="project-overlay">' +
+                '<h3>' + (p.title || '') + '</h3>' +
+                '<p>Completed ' + (p.year || '') + '</p>' +
+                '<a href="#" class="btn btn-outline view-project-btn" data-project="' + slug + '">View Details</a>' +
+              '</div>';
+            grid.appendChild(div);
+          });
+
+          // Update the projectDetails reference used by the modal
+          Object.keys(newProjectDetails).forEach(function(key) {
+            projectDetails[key] = newProjectDetails[key];
+          });
+
+          // Re-bind modal buttons
+          document.querySelectorAll('.projects-grid .view-project-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              var projectId = this.getAttribute('data-project');
+              var projectData = projectDetails[projectId];
+              if (projectData) {
+                modalImg.src = projectData.image;
+                modalImg.alt = projectData.title;
+                modalTitle.textContent = projectData.title;
+                modalDescription.textContent = projectData.description;
+                modalCategory.textContent = projectData.category;
+                modalType.textContent = projectData.type;
+                modalLocation.textContent = projectData.location;
+                modalDate.textContent = projectData.date;
+                modalClient.textContent = projectData.client;
+                modalHighlights.textContent = projectData.highlights;
+                modalScope.textContent = projectData.scope;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+              }
+            });
+          });
+
+          // Re-bind filter buttons
+          document.querySelectorAll('.filter-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+              document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+              btn.classList.add('active');
+              var filter = btn.getAttribute('data-filter');
+              document.querySelectorAll('.project-item').forEach(function(item) {
+                item.style.display = (filter === 'all' || item.classList.contains(filter)) ? 'block' : 'none';
+              });
+            });
+          });
+
+          // Re-run scroll animation setup for new elements
+          document.querySelectorAll('.project-item').forEach(function(el) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          });
+          animateOnScroll();
+
+        } catch (e) { /* use static fallback */ }
+      }
+
+      async function loadTestimonials() {
+        try {
+          const testimonialFiles = [
+            'content/testimonials/robert-kintu.md',
+            'content/testimonials/sarah-nalwoga.md'
+          ];
+
+          const testimonialsList = [];
+          for (const file of testimonialFiles) {
+            try {
+              const resp = await fetch('/' + file);
+              if (resp.ok) {
+                const text = await resp.text();
+                const data = parseFrontmatter(text);
+                if (data.name) testimonialsList.push(data);
+              }
+            } catch (e) { /* skip */ }
+          }
+
+          if (testimonialsList.length === 0) return;
+
+          const slider = document.querySelector('.testimonial-slider');
+          if (!slider) return;
+
+          slider.innerHTML = '';
+
+          testimonialsList.forEach(function(t) {
+            var div = document.createElement('div');
+            div.className = 'testimonial-item';
+            div.innerHTML =
+              '<div class="testimonial-content">' +
+                '<p>"' + (t.text || '') + '"</p>' +
+                '<div class="testimonial-author">' +
+                  '<img src="' + (t.photo || '') + '" alt="' + (t.name || '') + '">' +
+                  '<div>' +
+                    '<h4>' + (t.name || '') + '</h4>' +
+                    '<p>' + (t.role || '') + '</p>' +
+                  '</div>' +
+                '</div>' +
+              '</div>';
+            slider.appendChild(div);
+          });
+
+          // Reinitialize testimonial slider
+          var items = document.querySelectorAll('.testimonial-item');
+          var currentIdx = 0;
+          function showSlide(n) {
+            items.forEach(function(item) { item.style.display = 'none'; });
+            currentIdx = (n + items.length) % items.length;
+            items[currentIdx].style.display = 'block';
+          }
+          showSlide(0);
+          setInterval(function() { showSlide(currentIdx + 1); }, 5000);
+
+        } catch (e) { /* use static fallback */ }
+      }
+
+      async function loadCompanyInfo() {
+        try {
+          const resp = await fetch('/content/company.md');
+          if (!resp.ok) return;
+          const text = await resp.text();
+          const data = parseFrontmatter(text);
+
+          // Update hero tagline
+          if (data.tagline) {
+            var heroH2 = document.querySelector('.hero-content h2');
+            if (heroH2) heroH2.textContent = data.tagline;
+          }
+          if (data.hero_subtitle) {
+            var heroP = document.querySelector('.hero-content p');
+            if (heroP) heroP.textContent = data.hero_subtitle;
+          }
+
+          // Update about section
+          if (data.about_text_1) {
+            var aboutTexts = document.querySelectorAll('.about-text > p');
+            if (aboutTexts[0]) aboutTexts[0].textContent = data.about_text_1;
+            if (aboutTexts[1] && data.about_text_2) aboutTexts[1].textContent = data.about_text_2;
+          }
+
+          // Update stats
+          var stats = data.stats_group;
+          if (stats && typeof stats === 'object') {
+            var statItems = document.querySelectorAll('.stat-item');
+            if (statItems[0]) {
+              statItems[0].querySelector('.stat-number').textContent = stats.stat_years || '15+';
+              statItems[0].querySelector('.stat-text').textContent = stats.stat_years_label || 'Years Experience';
+            }
+            if (statItems[1]) {
+              statItems[1].querySelector('.stat-number').textContent = stats.stat_projects || '200+';
+              statItems[1].querySelector('.stat-text').textContent = stats.stat_projects_label || 'Projects Completed';
+            }
+            if (statItems[2]) {
+              statItems[2].querySelector('.stat-number').textContent = stats.stat_team || '50+';
+              statItems[2].querySelector('.stat-text').textContent = stats.stat_team_label || 'Team Members';
+            }
+            if (statItems[3]) {
+              statItems[3].querySelector('.stat-number').textContent = stats.stat_satisfaction || '98%';
+              statItems[3].querySelector('.stat-text').textContent = stats.stat_satisfaction_label || 'Client Satisfaction';
+            }
+          }
+
+          // Update contact info
+          var contact = data.contact;
+          if (contact && typeof contact === 'object') {
+            var infoTexts = document.querySelectorAll('.info-text');
+            if (infoTexts[0] && contact.address) {
+              infoTexts[0].querySelector('p').innerHTML = contact.address.replace(/\\n/g, '<br>');
+            }
+            if (infoTexts[1]) {
+              var phones = (contact.phone_1 || '') + (contact.phone_2 ? '<br>' + contact.phone_2 : '');
+              infoTexts[1].querySelector('p').innerHTML = phones;
+            }
+            if (infoTexts[2]) {
+              var emails = (contact.email_1 || '') + (contact.email_2 ? '<br>' + contact.email_2 : '');
+              infoTexts[2].querySelector('p').innerHTML = emails;
+            }
+            if (infoTexts[3]) {
+              var hours = (contact.working_hours_weekday || '') + (contact.working_hours_weekend ? '<br>' + contact.working_hours_weekend : '');
+              infoTexts[3].querySelector('p').innerHTML = hours;
+            }
+          }
+
+        } catch (e) { /* use static fallback */ }
+      }
+
+      // Load CMS content on page load
+      document.addEventListener('DOMContentLoaded', loadCMSContent);
     </script>
 </body>
 </html>

@@ -1,0 +1,99 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Residential", value: "residential" }
+          - { label: "Commercial", value: "commercial" }
+          - { label: "Industrial", value: "industrial" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "Completed", value: "completed" }
+          - { label: "In Progress", value: "in-progress" }
+          - { label: "Upcoming", value: "upcoming" }
+      - { label: "Client", name: "client", widget: "string" }
+      - { label: "Project Type", name: "type", widget: "string" }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Highlights", name: "highlights", widget: "text" }
+      - { label: "Scope of Work", name: "scope", widget: "text" }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    folder: "content/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Client Name", name: "name", widget: "string" }
+      - { label: "Role / Title", name: "role", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Testimonial Text", name: "text", widget: "text" }
+
+  - name: "team"
+    label: "Team Members"
+    folder: "content/team"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Role / Position", name: "role", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Bio", name: "bio", widget: "text" }
+      - { label: "Display Order", name: "order", widget: "number", value_type: "int", default: 10 }
+
+  - name: "company"
+    label: "Company Info"
+    files:
+      - name: "general"
+        label: "General Information"
+        file: "content/company.md"
+        fields:
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "text" }
+          - { label: "About Title", name: "about_title", widget: "string" }
+          - { label: "About Subtitle", name: "about_subtitle", widget: "string" }
+          - { label: "About Paragraph 1", name: "about_text_1", widget: "text" }
+          - { label: "About Paragraph 2", name: "about_text_2", widget: "text" }
+          - label: "Stats"
+            name: "stats_group"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Years Number", name: "stat_years", widget: "string", default: "15+" }
+              - { label: "Years Label", name: "stat_years_label", widget: "string", default: "Years Experience" }
+              - { label: "Projects Number", name: "stat_projects", widget: "string", default: "200+" }
+              - { label: "Projects Label", name: "stat_projects_label", widget: "string", default: "Projects Completed" }
+              - { label: "Team Number", name: "stat_team", widget: "string", default: "50+" }
+              - { label: "Team Label", name: "stat_team_label", widget: "string", default: "Team Members" }
+              - { label: "Satisfaction Number", name: "stat_satisfaction", widget: "string", default: "98%" }
+              - { label: "Satisfaction Label", name: "stat_satisfaction_label", widget: "string", default: "Client Satisfaction" }
+          - label: "Contact Details"
+            name: "contact"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Address", name: "address", widget: "text" }
+              - { label: "Phone 1", name: "phone_1", widget: "string" }
+              - { label: "Phone 2", name: "phone_2", widget: "string", required: false }
+              - { label: "Email 1", name: "email_1", widget: "string" }
+              - { label: "Email 2", name: "email_2", widget: "string", required: false }
+              - { label: "Weekday Hours", name: "working_hours_weekday", widget: "string" }
+              - { label: "Weekend Hours", name: "working_hours_weekend", widget: "string" }
